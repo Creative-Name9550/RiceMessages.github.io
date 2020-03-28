@@ -12,7 +12,7 @@
 <link rel="icon" href="https://art.pixilart.com/84f23189e96712c.png/favicon-228.png" sizes="228x228">
 
 <!-- Android -->
-<link rel="shortcut icon" sizes="196x196" href=“https://art.pixilart.com/84f23189e96712c.png/favicon-196.png">
+<link rel="shortcut icon" sizes="196x196" href="https://art.pixilart.com/84f23189e96712c.png/favicon-196.png">
 
 <!-- iOS -->
 <link rel="apple-touch-icon" href="https://art.pixilart.com/84f23189e96712c.png/favicon-120.png" sizes="120x120">
@@ -23,7 +23,7 @@
 <meta name="msapplication-TileColor" content="#000000">
 <meta name="msapplication-TileImage" content="https://art.pixilart.com/84f23189e96712c.png/favicon-144.png">
 
-<!— Windows 8.1 + IE11 and above —>
+<!-- Windows 8.1 + IE11 and above -->
 <meta name="msapplication-config" content="https://art.pixilart.com/84f23189e96712c.png/browserconfig.xml" />
     </head>
     <body>
@@ -234,7 +234,7 @@ var userProfile = ''
 var userArr = []
 var showing = false
 var checked = false
-var html = "<input type=text> <button onclick='send()'>Send</button><button><a href='https://code.sololearn.com/W0760Oqlx8BN/#html'>Bot Scripting</a></button><button onclick='pfp()'>set profile picture</button><button onclick='theme()'>change theme</button><br> <div id=iframe></div>"
+var html = "<input type=text> <button onclick='send()'>Send</button><button><a href='https://code.sololearn.com/W0760Oqlx8BN/#html'>Bot Scripting</a></button><button onclick='pfp()'>set profile picture</button><button onclick='logout()'>logout</button><br><button onclick='theme()'>change theme</button><br> <div id=iframe></div>"
 function intervaled() {
 trueStart = true
 }
@@ -249,6 +249,10 @@ setTimeout(function() {
         }
     }
 },1)
+function logout() {
+    localStorage.clear()
+    location.reload()
+}
 function show() {
     if(!showing) {
         document.getElementById('password').setAttribute('type','text')
@@ -339,12 +343,16 @@ if(checked) {
 }
 }
 function startlogin() {
-if(!isMobile) {
-document.getElementById('username').value = user
-document.getElementById('password').value = localStorage.getItem('pass')
+    document.getElementById('username').value = user
+    document.getElementById('password').value = localStorage.getItem('pass')
+    login()
 }
-}
-setTimeout(startlogin,1)
+var asdf = setInterval(() => {
+    if(json.users !== undefined) {
+        clearInterval(asdf)
+        startlogin()
+    }
+},1)
 function sender(args) {
     document.querySelector('input').value = args
     send()
@@ -411,7 +419,6 @@ color: silver;
     bottom:10vh;
     position:absolute;
 }
-
 body {
 background:rgb(44,47,51);
 }
@@ -429,7 +436,6 @@ background:rgb(44,47,51);
     width:7vh;
         font-size:90%;
 }
-
 img, video {z-index: 1}
 * {border-color: #555555 !important}
 cite, cite * {color: #029833 !important}
@@ -438,7 +444,6 @@ input, textarea {background-color: #333333 !important}
 a {background-color: rgba(255, 255, 255, 0.01) !important}
 :visited, :visited * {color: rgb(211, 138, 138) !important}
 html, html::before, body, body::before, input, select, button {background-image: none !important}
-
 video {
   background-color: transparent !important;
 }
