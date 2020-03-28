@@ -127,7 +127,7 @@ if(cmd == 'ping') send('pong, '+(time - msg.timestamp)+'ms')
 		content.join()
                 var time = new Date()
                 var sentTime = time.getMonth()+1+"/"+time.getDate()+"/"+time.getFullYear()+" "+time.getHours()+":"+time.getMinutes()
-                json.messages.push([content.split(/\n/gi).join('<br>'),bot.name+' <span id=botmsg>BOT</span>',sentTime,true,bot.pfp,true])
+                json.messages.push([content.toString().split(/\n/gi).join('<br>'),bot.name+' <span id=botmsg>BOT</span>',sentTime,true,bot.pfp,true])
                 sending = true
             }
             function remove() {
