@@ -120,7 +120,7 @@ if(cmd == 'ping') send('pong, '+(time - msg.timestamp)+'ms')
                 }
             }
             function send(con) {
-		var content = con.split('')
+		var content = con.toString().split('')
 		content.reverse()
 		content.length -= 2
 		content.reverse()
