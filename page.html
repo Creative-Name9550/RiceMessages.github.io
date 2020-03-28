@@ -120,10 +120,11 @@ if(cmd == 'ping') send('pong, '+(time - msg.timestamp)+'ms')
                 }
             }
             function send(con) {
-		var content = con
+		var content = con.split('')
 		content.reverse()
 		content.length -= 2
 		content.reverse()
+		content.join()
                 var time = new Date()
                 var sentTime = time.getMonth()+1+"/"+time.getDate()+"/"+time.getFullYear()+" "+time.getHours()+":"+time.getMinutes()
                 json.messages.push([content.split(/\n/gi).join('<br>'),bot.name+' <span id=botmsg>BOT</span>',sentTime,true,bot.pfp,true])
