@@ -26,7 +26,7 @@
 <!-- Windows 8.1 + IE11 and above -->
 <meta name="msapplication-config" content="https://art.pixilart.com/84f23189e96712c.png/browserconfig.xml" />
     </head>
-    <body>
+    <body onunload="database.ref('onlineUsers').set(json.online-1)">
         <style id=styling>
 
 
@@ -192,6 +192,7 @@ y.innerHTML += ("<p><img id=pfp src="+json.messages[x][4]+">"+json.messages[x][1
     if(begin) {
         var thiss = document.getElementById('iframe')
         thiss.scrollTo(0,thiss.scrollHeight)
+        database.ref('onlineUsers').set(json.online)
         begin = false
     }
     hasStarted = false
@@ -199,6 +200,8 @@ y.innerHTML += ("<p><img id=pfp src="+json.messages[x][4]+">"+json.messages[x][1
           if(sending || init) {
             sending = false
            database.ref('msgs').set(json.messages)
+           var thiss = document.getElementById('iframe')
+        thiss.scrollTo(0,thiss.scrollHeight)
           }
           if(logging || init) {
               database.ref('users').set(json.users)
@@ -235,9 +238,13 @@ var userProfile = ''
 var userArr = []
 var showing = false
 var checked = false
-var html = "<input type=text> <button onclick='send()'>Send</button><button><a href='https://code.sololearn.com/W0760Oqlx8BN/#html'>Bot Scripting</a></button><button onclick='pfp()'>set profile picture</button><button onclick='logout()'>logout</button><br><button onclick='theme()'>change theme</button><br> <div id=iframe></div>"
+var html = "<input type=text> <button onclick='send()'>Send</button><div style='color:darkgrey;'>online:<span>0</span></div><button><a href='https://code.sololearn.com/W0760Oqlx8BN/#html'>Bot Scripting</a></button><button onclick='pfp()'>set profile picture</button><button onclick='logout()'>logout</button><br><button onclick='theme()'>change theme</button><br> <div id=iframe></div>"
+var intervalStart = true
 function intervaled() {
 trueStart = true
+if(intervalStart) json.online++
+intervalStart = false
+document.querySelector('span').innerHTML = json.online
 }
 var begin = false
 var lastUser = ''
