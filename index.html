@@ -244,7 +244,7 @@ function intervaled() {
 trueStart = true
 if(intervalStart) json.online++
 intervalStart = false
-document.querySelector('span').innerHTML = json.online
+document.querySelector('span').innerHTML = json.online+'/'+json.users.length
 }
 var begin = false
 var lastUser = ''
